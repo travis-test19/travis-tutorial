@@ -2,5 +2,13 @@ language: java
 jdk:
   - openjdk11
 
-script:
-  - ./gradlew build
+stages:
+  - build
+  - test
+
+jobs:
+  include:
+    - stage: build
+      script: ./gradlew assemble
+    - stage: test
+      script: ./gradlew check
